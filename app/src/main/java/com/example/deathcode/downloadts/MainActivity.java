@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     android.widget.SearchView searchView;
     private boolean isPrepared;
     private int time;
+    static int count = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         download.setOnClickListener(new View.OnClickListener() {
-            int count = 1;
+
 
             @Override
             public void onClick(View view) {
@@ -101,23 +102,16 @@ public class MainActivity extends AppCompatActivity {
                         downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
                         Uri Download_Uri = Uri.parse(links.get(0));
                         DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
-
-                        //Restrict the types of networks over which this download may proceed.
-                        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
                         //Set whether this download may proceed over a roaming connection.
-                        request.setAllowedOverRoaming(false);
+                        request.setAllowedOverRoaming(true);
                         //Set the title of this download, to be displayed in notifications.
                         request.setTitle(textViewTitle.getText().toString());
+                        request.allowScanningByMediaScanner();
+                        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
                         //Set the local destination for the downloaded file to a path within the application's external files directory
-                        request.setDestinationInExternalFilesDir(MainActivity.this, Environment.DIRECTORY_DOWNLOADS, textViewTitle.getText().toString() + extensions.get(0));
+                        request.setDestinationInExternalFilesDir(MainActivity.this, Environment.getExternalStorageDirectory() + "/Download", textViewTitle.getText().toString() +"."+ extensions.get(0));
                         //Enqueue a new download and same the referenceId
                         downloadReference = downloadManager.enqueue(request);
-                        try {
-                            downloadManager.openDownloadedFile(downloadReference);
-                            download.setImageResource(R.drawable.ic_download);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        }
                     }
                 }else
                 {
