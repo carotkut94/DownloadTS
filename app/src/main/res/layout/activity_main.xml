@@ -1,12 +1,88 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.deathcode.downloadts.MainActivity">
+    android:background="@color/md_cyan_700"
+    android:fitsSystemWindows="true">
 
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textURL"
+        android:queryHint="Enter URL"
+        android:background="#ffffff"
+        />
 
+    <LinearLayout
+        android:layout_below="@+id/textURL"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/imageHeader"
+        android:layout_width="200dp"
+        android:layout_gravity="center"
+        android:layout_height="200dp"
+        android:elevation="12dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageHeader"
+        android:layout_margin="16dp"
+        android:clipToPadding="true"
+        app:cardElevation="12dp"
+        app:cardMaxElevation="18dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="Video Title"
+                android:id="@+id/title"
+                android:textColor="@color/md_black_1000"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekMusic"
+                android:padding="10dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/pausePlay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:background="#00ffffff"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_play" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00ffffff"
+                    android:id="@+id/downloadStartStop"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_download" />
+            </RelativeLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+    </LinearLayout>
 </RelativeLayout>
